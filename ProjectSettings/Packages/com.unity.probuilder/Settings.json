@@ -106,7 +106,7 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.lastMeshSelectMode",
-                "value": "{\"m_Value\":2}"
+                "value": "{\"m_Value\":8}"
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -131,15 +131,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize",
-<<<<<<< Updated upstream
-                "value": "{\"m_Value\":{\"x\":-0.12005347013473511,\"y\":0.06061440706253052,\"z\":-0.2964916229248047}}"
-=======
-<<<<<<< HEAD
-                "value": "{\"m_Value\":{\"x\":1.6117568016052247,\"y\":2.2611870765686037,\"z\":-1.1110625267028809}}"
-=======
-                "value": "{\"m_Value\":{\"x\":-0.12005347013473511,\"y\":0.06061440706253052,\"z\":-0.2964916229248047}}"
->>>>>>> 909c045e3b5b294554a8e40b90ac96f17d34b2f9
->>>>>>> Stashed changes
+                "value": "{\"m_Value\":{\"x\":46.766571044921878,\"y\":0.9031471014022827,\"z\":43.847618103027347}}"
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
