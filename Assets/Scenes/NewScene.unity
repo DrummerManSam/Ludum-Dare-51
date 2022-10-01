@@ -6062,7 +6062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabList:
   - obstacleName: Car
-    obstaclePrefab: {fileID: 4620637809868470934, guid: 9b51a0e5954e63d43843a1f15a202806, type: 3}
+    obstaclePrefab: {fileID: 3986301889251558803, guid: 9b51a0e5954e63d43843a1f15a202806, type: 3}
     numberOfObjectToSpawn: 15
     objectDifficulty: 0
     spawnOffset: {x: 0, y: 0.2, z: 0}
