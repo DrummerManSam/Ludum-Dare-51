@@ -11,6 +11,9 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private float factor = 1;
 
+    [SerializeField]
+    private float deathTime = 1f;
+
     private Rigidbody rb;
 
     public void Awake()
@@ -24,9 +27,15 @@ public class ObstacleController : MonoBehaviour
         rb.AddTorque(-rb.angularVelocity * factor);
     }
 
-    public void OnHit()
+    public void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "DeathBarrier")
+            Invoke("OnDeath", deathTime);
+    }
 
+    public void OnDeath()
+    {
+        gameObject.SetActive(false);
     }
 
     public void OnDisable()

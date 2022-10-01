@@ -20,8 +20,8 @@ public class CarSounds : MonoBehaviour
     {
         if(player.gameObject.CompareTag("Player"))
             {
+               // AudioManager.instance.PlayAudio(carBeep);
                 carSource.PlayOneShot(carBeep);
-                print("This is working");
             }
     }
 
