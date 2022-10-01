@@ -10,8 +10,8 @@ public class Effect : MonoBehaviour
     public int effectRating { get { return m_effectRating; } }
 
     [SerializeField]
-    private float m_effectMultiplier = 0.25f;
-    public float effectMultiplier { get { return m_effectMultiplier; } }
+    private string m_description;
+    public string description { get { return m_description; } }
 
     private bool effectStarted = false;
     public virtual void InitEffect()

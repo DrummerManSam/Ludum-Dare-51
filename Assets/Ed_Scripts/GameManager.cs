@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float m_countDownTimer = 10;
     public float countDownTimer { get { return m_countDownTimer; } }
+
+    [SerializeField]
+    private float m_countDownLag = 0.1f;
 
     [SerializeField]
     private TextMeshPro m_countDownText;
@@ -26,7 +30,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float m_scoreMultiplier = 1;
 
+    [SerializeField]
+    private float m_globalSpeed = 1;
+    public float globalSpeed { get { return m_globalSpeed; } }
+
+    [SerializeField]
+    private TextMeshProUGUI m_totalScoreText;
+
+    [SerializeField]
     private bool m_hasGameStarted = false;
+
+    [SerializeField]
     private bool m_countDownPause = false;
 
     public void Awake()
@@ -42,8 +56,12 @@ public class GameManager : MonoBehaviour
         if(m_hasGameStarted)
         {
 
-            if(!m_countDownPause)
+            if (!m_countDownPause)
             {
+                m_totalScore += Time.deltaTime * m_scoreMultiplier;
+
+                m_totalScoreText.text = "Score: " + (int)m_totalScore;
+
                 m_countDownTimer -= Time.deltaTime;
 
                 int tempTimer = (int)m_countDownTimer;
@@ -65,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         //ResetTimer and Pause Next CountDown;
         m_countDownPause = true;
-        m_countDownTimer = 10;
+        m_countDownText.text = "";
 
         //How to chose what effect raiting we can allow:
         int chosenEffectRating = Random.Range(1, 10);
@@ -82,14 +100,23 @@ public class GameManager : MonoBehaviour
 
         }
 
+        if (nextEffect == null)
+            return;
+
         //Initiate the new Effect:
         nextEffect.InitEffect();
 
-        //Adjust Score Multiplier:
-        m_scoreMultiplier += nextEffect.effectMultiplier;
-
         //Add it to the Effect list;
-        m_activeEffects.Add(nextEffect); 
+        m_activeEffects.Add(nextEffect);
+
+        Invoke("CountDownRest", m_countDownLag);
+    }
+
+    public void CountDownReset()
+    {
+        m_countDownTimer = 10;
+        m_countDownText.text = m_countDownTimer.ToString();
+        m_countDownPause = false;
     }
 
     //Called when the Game actually starts:
