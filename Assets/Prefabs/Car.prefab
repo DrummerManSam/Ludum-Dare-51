@@ -415,6 +415,8 @@ MonoBehaviour:
   m_obstacleSpeed: 1
   factor: 10
   deathTime: 1
+  lowPitch: 1
+  highPitch: 1.1
   carBeep: {fileID: 8300000, guid: 94b2de4178bce4943813ba46b4f4fa3d, type: 3}
 --- !u!65 &7288505574548942827
 BoxCollider:
@@ -439,11 +441,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d6bdbfba2ac90d94d969972984dedd8b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0c6d35674fca73e4aaf74a5471b61e3d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

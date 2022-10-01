@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour
     private float m_countDownLag = 0.1f;
 
     [SerializeField]
-    private TextMeshPro m_countDownText;
-
-    [SerializeField]
     private GameObject effectParents;
 
     private List<Effect> m_potentialEffects = new List<Effect>();
@@ -102,9 +99,6 @@ public class GameManager : MonoBehaviour
 
                 m_countDownTimer -= Time.deltaTime;
 
-                int tempTimer = (int)m_countDownTimer;
-                m_countDownText.text = tempTimer.ToString();
-
                 if (m_countDownTimer < 0)
                     CountDownReached();
             }
@@ -122,7 +116,6 @@ public class GameManager : MonoBehaviour
     {
         //ResetTimer and Pause Next CountDown;
         m_countDownPause = true;
-        m_countDownText.text = "";
         m_signController.SwitchSprites(false);
 
         //How to chose what effect raiting we can allow:
@@ -155,7 +148,6 @@ public class GameManager : MonoBehaviour
     public void CountDownReset()
     {
         m_countDownTimer = 10;
-        m_countDownText.text = m_countDownTimer.ToString();
         m_signController.SwitchSprites(true);
         m_countDownPause = false;
     }
@@ -177,7 +169,6 @@ public class GameManager : MonoBehaviour
     {
         m_hasGameStarted = false;
         m_countDownPause = true;
-        m_countDownText.text = "";
         m_countDownTimer = 10;
         timer = 100f;
         m_signController.SwitchSprites(false);

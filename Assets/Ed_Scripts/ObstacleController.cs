@@ -14,6 +14,11 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private float deathTime = 1f;
 
+    [SerializeField]
+    private float lowPitch = 0.9f;
+    [SerializeField]
+    private float highPitch = 1.1f;
+
     private Rigidbody rb;
 
     public AudioClip carBeep;
@@ -24,6 +29,10 @@ public class ObstacleController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         carSource = GetComponent<AudioSource>();
+    }
+    public void OnEnable()
+    {
+        carSource.Play();
     }
 
     public void Update()
@@ -37,7 +46,7 @@ public class ObstacleController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            carSource.pitch = Random.Range(0.9f, 1.1f);
+            carSource.pitch = Random.Range(lowPitch, highPitch);
             carSource.PlayOneShot(carBeep);
         }
 

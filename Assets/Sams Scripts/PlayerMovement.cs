@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator m_animator;
     private SpriteRenderer m_sprite;
     private BoxCollider boxCollider;
+    private AudioSource aSource;
+
+    [SerializeField]
+    private AudioClip[] deathClip;
 
     [SerializeField]
     private RigidbodyConstraints m_aliveConstraints;
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_sprite = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider>();
+        aSource = GetComponent<AudioSource>();
 
     }
 
@@ -66,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
         
 
         isDead = true;
-
+        aSource.pitch = Random.Range(0.9f, 1.1f);
+        aSource.PlayOneShot(deathClip[Random.Range(0, deathClip.Length)]);
         boxCollider.material = m_deathMaterial;
         rb.constraints = m_deathConstraints;
         rb.AddForce(playerDamage * collision.impulse, ForceMode.Impulse);
