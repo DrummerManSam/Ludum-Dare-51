@@ -6062,7 +6062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabList:
   - obstacleName: Car
-    obstaclePrefab: {fileID: 4034587668215780140, guid: 72d10e030af06f5429859ae9514f1792, type: 3}
+    obstaclePrefab: {fileID: 4620637809868470934, guid: 9b51a0e5954e63d43843a1f15a202806, type: 3}
     numberOfObjectToSpawn: 15
     objectDifficulty: 0
     spawnOffset: {x: 0, y: 0.2, z: 0}
@@ -15740,7 +15740,7 @@ GameObject:
   - component: {fileID: 1939871280}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
