@@ -5,11 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     [SerializeField]
     public int speed = 5;
 
-    [SerializeField]
-    private Vector2 playerInput;
+    public Vector2 playerInput;
+
     private Rigidbody rb;
 
     [SerializeField]
@@ -21,16 +23,31 @@ public class PlayerMovement : MonoBehaviour
     public float decceleration = 3.0f;
     public float velPower = 1.5f;
 
-    public float m_playerDamage = 0f;
+    public float playerDamage = 1f;
+    private bool isDead = false;
 
     private Animator m_animator;
     private SpriteRenderer m_sprite;
+    private BoxCollider boxCollider;
+
+    [SerializeField]
+    private RigidbodyConstraints m_aliveConstraints;
+
+    [SerializeField]
+    private RigidbodyConstraints m_deathConstraints;
+
+    [SerializeField]
+    private PhysicMaterial m_deathMaterial;
 
     private void Awake()
     {
+        if(instance == null)
+            instance = this;
+
         rb = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
         m_sprite = GetComponentInChildren<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
 
     }
 
@@ -40,15 +57,30 @@ public class PlayerMovement : MonoBehaviour
         xAxis = playerInput.x;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision collision)
     {
-      //  m_playerDamage += 1;
-      //  rb.AddForce(Vector3.up * m_playerDamage, ForceMode.Impulse);
+
+        if (collision.transform.tag != "Obstacle")
+            return;
+
+        
+
+        isDead = true;
+
+        boxCollider.material = m_deathMaterial;
+        rb.constraints = m_deathConstraints;
+        rb.AddForce(playerDamage * collision.impulse, ForceMode.Impulse);
+        print(playerDamage * collision.impulse.magnitude);
+        m_animator.SetBool("Death", true);
     }
+
 
 
     private void FixedUpdate()
     {
+        if (isDead)
+            return;
+
         float targetSpeed = xAxis * speed;
 
         float speedDif = targetSpeed - rb.velocity.x;

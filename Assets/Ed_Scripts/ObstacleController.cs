@@ -21,7 +21,7 @@ public class ObstacleController : MonoBehaviour
 
     public void Update()
     {
-        rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * -transform.forward * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * -transform.forward * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     public void OnHit()

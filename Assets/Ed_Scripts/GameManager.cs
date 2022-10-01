@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool m_countDownPause = false;
 
+    [SerializeField]
+    private SignController m_signController;
+
     public void Awake()
     {
         if (instance != null)
@@ -108,6 +111,11 @@ public class GameManager : MonoBehaviour
 
 
         }
+        else
+        {
+            if (PlayerMovement.instance.playerInput != Vector2.zero)
+                OnGameStart();
+        }
     }
 
     public void CountDownReached()
@@ -115,6 +123,7 @@ public class GameManager : MonoBehaviour
         //ResetTimer and Pause Next CountDown;
         m_countDownPause = true;
         m_countDownText.text = "";
+        m_signController.SwitchSprites(false);
 
         //How to chose what effect raiting we can allow:
         int chosenEffectRating = Random.Range(1, 10);
@@ -147,6 +156,7 @@ public class GameManager : MonoBehaviour
     {
         m_countDownTimer = 10;
         m_countDownText.text = m_countDownTimer.ToString();
+        m_signController.SwitchSprites(true);
         m_countDownPause = false;
     }
 
@@ -159,6 +169,7 @@ public class GameManager : MonoBehaviour
         m_activeEffects.Clear();
         m_scoreMultiplier = 1;
         m_totalScore = 0;
+        m_signController.SwitchSprites(true);
     }
 
     //Called when the Game Ends:
@@ -169,6 +180,7 @@ public class GameManager : MonoBehaviour
         m_countDownText.text = "";
         m_countDownTimer = 10;
         timer = 100f;
+        m_signController.SwitchSprites(false);
 
         for (int i = 0; i < m_activeEffects.Count; i++)
         {
