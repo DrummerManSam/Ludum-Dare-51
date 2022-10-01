@@ -9,13 +9,19 @@ public class PlayerMovement : MonoBehaviour
     public int speed = 5;
 
     [SerializeField]
-    private Vector2 movement;
+    private Vector2 playerInput;
     private Rigidbody rb;
 
     [SerializeField]
     private Vector3 finalMovement;
-    
-    
+
+    private float xAxis;
+
+    private float acceleration = 3.0f;
+    private float decceleration = 3.0f;
+    private float velPower = 1.5f;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,14 +30,24 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMovement(InputValue input)
     {
-        movement = input.Get<Vector2>();
-
-        finalMovement = new Vector3(movement.x, movement.y, 0f) * Time.deltaTime * speed;
+        playerInput = input.Get<Vector2>();
+        xAxis = playerInput.x;
     }
+
+   
 
     private void FixedUpdate()
     {
-        rb.AddForce(finalMovement, ForceMode.Impulse);
+        float targetSpeed = xAxis * speed;
+
+        float speedDif = targetSpeed - rb.velocity.x;
+
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+        rb.AddForce(movement * Vector2.right);
+
     }
 
 }
