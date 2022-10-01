@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        m_playerDamage += 1;
-        rb.AddForce(Vector3.up * m_playerDamage, ForceMode.Impulse);
+      //  m_playerDamage += 1;
+      //  rb.AddForce(Vector3.up * m_playerDamage, ForceMode.Impulse);
     }
 
 
