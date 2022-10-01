@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     public float globalSpeed { get { return m_globalSpeed; } }
 
     [SerializeField]
+    private float m_spawnTimer = 1f;
+    public float spawnTimer { get { return m_spawnTimer; } }
+
+    private float timer = 0f;
+
+    [SerializeField]
     private TextMeshProUGUI m_totalScoreText;
 
     [SerializeField]
@@ -55,6 +61,15 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
+            m_globalSpeed += Time.deltaTime;
+
+            timer += Time.deltaTime;
+
+            if(timer > spawnTimer)
+            {
+                timer = 0;
+                SpawnManager.instance.SpawnObstacle(0);
+            }
 
             if (!m_countDownPause)
             {

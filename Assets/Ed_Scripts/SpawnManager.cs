@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     private ObstacleBase[] obstaclePrefabList;
 
     [SerializeField]
-    private Transform spawnCenterPosition;
+    private Vector3 spawnCenterPosition;
 
     public void Awake()
     {
@@ -30,6 +30,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
+        spawnCenterPosition = new Vector3(Camera.main.transform.position.x, 0f, 0f);
 
     }
 
@@ -39,7 +40,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)
             {
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition.position;
+                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition;
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true); 
             }
         }
