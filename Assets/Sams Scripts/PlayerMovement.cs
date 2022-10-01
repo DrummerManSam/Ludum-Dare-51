@@ -17,9 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float xAxis;
 
-    private float acceleration = 3.0f;
-    private float decceleration = 3.0f;
-    private float velPower = 1.5f;
+    public float acceleration = 3.0f;
+    public float decceleration = 3.0f;
+    public float velPower = 1.5f;
 
 
     private void Awake()
