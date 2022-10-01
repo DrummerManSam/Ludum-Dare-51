@@ -11,6 +11,13 @@ public class PlayerJump : MonoBehaviour
     public float jumpCutMultiplier = 0.5f;
     Rigidbody rb;
 
+    private Animator m_animator;
+
+    private void Awake()
+    {
+        m_animator = GetComponent<Animator>();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,10 +38,9 @@ public class PlayerJump : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            m_animator.SetTrigger("Jump");
             isGrounded = false;
             isJumping = true;
-
-
         }
 
         if (isJumping)

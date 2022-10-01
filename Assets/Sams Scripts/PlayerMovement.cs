@@ -23,13 +23,15 @@ public class PlayerMovement : MonoBehaviour
 
     public float m_playerDamage = 0f;
 
-
-
+    private Animator m_animator;
+    private SpriteRenderer m_sprite;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
+        m_animator = GetComponent<Animator>();
+        m_sprite = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     public void OnMovement(InputValue input)
@@ -57,6 +59,12 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(movement * Vector2.right);
 
+        if (rb.velocity.x > 0)
+            m_sprite.flipX = false;
+        else if(rb.velocity.x <0)
+            m_sprite.flipX = true;
+
+        m_animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
     }
 
    
