@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "5.77/x64" 1664652198
+<REAPER_PROJECT 0.1 "5.77/x64" 1664664054
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -95,7 +95,7 @@
     BUSCOMP 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
-    SEL 0
+    SEL 1
     REC 0 0 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0
@@ -115,17 +115,17 @@
       FADEIN 1 0 0 1 0 0
       FADEOUT 1 0 0 1 0 0
       MUTE 0
-      SEL 0
+      SEL 1
       IGUID {AD6DFFAA-800F-4F67-8899-769468DF6E42}
       IID 21
-      NAME 01-consolidated.wav
+      NAME "Car sounds and other stuff-consolidated.rpp"
       VOLPAN 1 0 1 -1
       SOFFS 0
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
       GUID {5BA84CCC-9282-4FD4-9B20-A1ADD0FEA7CE}
-      <SOURCE WAVE
-        FILE "01-consolidated.wav"
+      <SOURCE RPP_PROJECT
+        FILE "Car sounds and other stuff-consolidated.rpp"
       >
     >
   >
