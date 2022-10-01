@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public float m_playerDamage = 0f;
 
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(movement * Vector2.right);
 
     }
+
+   
 
 }
 
