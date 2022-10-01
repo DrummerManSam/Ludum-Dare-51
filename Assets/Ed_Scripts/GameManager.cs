@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class GameManager : MonoBehaviour
     private TextMeshPro m_countDownText;
 
     [SerializeField]
-    private List<Effect> m_potentialEffects;
+    private GameObject effectParents;
+
+    private List<Effect> m_potentialEffects = new List<Effect>();
 
     [SerializeField]
-    private List<Effect> m_activeEffects;
+    private List<Effect> m_activeEffects = new List<Effect> ();
 
     [SerializeField]
     private float m_totalScore = 0;
@@ -37,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float m_spawnTimer = 1f;
     public float spawnTimer { get { return m_spawnTimer; } }
+
+    [SerializeField]
+    private float spawnDensityAdj = 0.25f;
 
     private float timer = 100f;
 
@@ -55,19 +61,33 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+
+        for(int i = 1; i < effectParents.transform.childCount; i++)
+        {
+            Effect tempEffect = effectParents.transform.GetChild(i).GetComponent<Effect>();
+            m_potentialEffects.Add(tempEffect);
+        }
+        
     }
 
     public void Update()
     {
         if(m_hasGameStarted)
         {
-            m_globalSpeed += Time.deltaTime * Time.deltaTime;
+            m_globalSpeed += Time.deltaTime/2;
 
             timer += Time.deltaTime;
 
             if(timer > spawnTimer)
             {
                 timer = 0;
+                m_spawnTimer -= spawnDensityAdj;
+                float newSpawnTimer = m_spawnTimer - spawnDensityAdj;
+
+                newSpawnTimer = Mathf.Clamp(newSpawnTimer, 0.15f, 100);
+
+                m_spawnTimer = newSpawnTimer;
+
                 SpawnManager.instance.SpawnObstacle(0);
             }
 
@@ -86,10 +106,6 @@ public class GameManager : MonoBehaviour
                     CountDownReached();
             }
 
-            for(int i = 0; i < m_activeEffects.Count; i++)
-            {
-                m_activeEffects[i].TickEffect();
-            }
 
         }
     }
@@ -124,7 +140,7 @@ public class GameManager : MonoBehaviour
         //Add it to the Effect list;
         m_activeEffects.Add(nextEffect);
 
-        Invoke("CountDownRest", m_countDownLag);
+        Invoke("CountDownReset", m_countDownLag);
     }
 
     public void CountDownReset()
