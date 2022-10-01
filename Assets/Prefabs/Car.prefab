@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 3986301889251558810}
   - component: {fileID: 7288505574548942827}
   - component: {fileID: 4472983604557347306}
-  - component: {fileID: 8786482185807736031}
   m_Layer: 0
   m_Name: Car
   m_TagString: Obstacle
@@ -416,6 +415,7 @@ MonoBehaviour:
   m_obstacleSpeed: 1
   factor: 10
   deathTime: 1
+  carBeep: {fileID: 8300000, guid: 94b2de4178bce4943813ba46b4f4fa3d, type: 3}
 --- !u!65 &7288505574548942827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -525,16 +525,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8786482185807736031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986301889251558803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84fded60dc09fa943a9528ae162a70d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carBeep: {fileID: 8300000, guid: 94b2de4178bce4943813ba46b4f4fa3d, type: 3}

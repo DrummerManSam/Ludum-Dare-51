@@ -465,7 +465,6 @@ GameObject:
   - component: {fileID: 1145808572909420551}
   - component: {fileID: 5667219302652014813}
   - component: {fileID: 4047103969440062221}
-  - component: {fileID: -1275517935704474065}
   - component: {fileID: 2666119718967975116}
   - component: {fileID: 4915579017641528937}
   m_Layer: 0
@@ -1052,8 +1051,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8119724, y: 0.58684826, z: 0.97214127}
-  m_Center: {x: 0, y: 0.29342413, z: 0}
+  m_Size: {x: 0.8119724, y: 0.58684826, z: 1.1681626}
+  m_Center: {x: 0, y: 0.29342413, z: -0.089482576}
 --- !u!114 &4047103969440062221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,18 +1068,6 @@ MonoBehaviour:
   m_obstacleSpeed: 1
   factor: 10
   deathTime: 1
---- !u!114 &-1275517935704474065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6408562993749207580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84fded60dc09fa943a9528ae162a70d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   carBeep: {fileID: 8300000, guid: 729c2e7e9fa1f6145b4dbfc599e48970, type: 3}
 --- !u!65 &2666119718967975116
 BoxCollider:
@@ -1093,8 +1080,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.18, y: 0.83, z: 1.03}
-  m_Center: {x: 0, y: 0.29342413, z: 0}
+  m_Size: {x: 1.18, y: 0.8299999, z: 1.2730402}
+  m_Center: {x: 0, y: 0.29342413, z: -0.102328956}
 --- !u!82 &4915579017641528937
 AudioSource:
   m_ObjectHideFlags: 0

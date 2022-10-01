@@ -16,9 +16,14 @@ public class ObstacleController : MonoBehaviour
 
     private Rigidbody rb;
 
+    public AudioClip carBeep;
+    private AudioSource carSource;
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        carSource = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -29,6 +34,13 @@ public class ObstacleController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            carSource.pitch = Random.Range(0.9f, 1.1f);
+            carSource.PlayOneShot(carBeep);
+        }
+
         if (other.gameObject.tag == "DeathBarrier")
             Invoke("OnDeath", deathTime);
     }
@@ -43,4 +55,6 @@ public class ObstacleController : MonoBehaviour
         rb.velocity = UnityEngine.Vector3.zero;
         rb.angularVelocity = UnityEngine.Vector3.zero;
     }
+
+
 }
