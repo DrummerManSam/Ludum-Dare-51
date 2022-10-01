@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_obstacleSpeed: 1
+  factor: 10
 --- !u!54 &8649137485909315574
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -667,7 +668,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4034587668215780140}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1

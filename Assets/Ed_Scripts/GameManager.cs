@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
-            m_globalSpeed += Time.deltaTime/2;
+           // m_globalSpeed += Time.deltaTime/2;
 
             timer += Time.deltaTime;
 

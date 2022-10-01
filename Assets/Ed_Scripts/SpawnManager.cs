@@ -42,7 +42,9 @@ public class SpawnManager : MonoBehaviour
         {
             if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)
             {
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(Random.Range(-obstaclePrefabList[obstacleId].spawnRange, obstaclePrefabList[obstacleId].spawnRange + 1), 0f ,0f);
+                int SpawnRangeID = Random.Range(0, obstaclePrefabList[obstacleId].spawnRangeList.Length);
+
+                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f) ;
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                 return;
             }

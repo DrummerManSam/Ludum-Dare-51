@@ -6066,14 +6066,32 @@ MonoBehaviour:
     numberOfObjectToSpawn: 15
     objectDifficulty: 0
     spawnOffset: {x: 0, y: 0.2, z: 0}
-    spawnRange: 2
+    spawnRangeList:
+    - 2
+    - 1.5
+    - 1
+    - 0.5
+    - 0
+    - -0.5
+    - -1
+    - -1.5
+    - -2
     obstacleList: []
   - obstacleName: Truck
     obstaclePrefab: {fileID: 6408562993749207580, guid: 9b05864ef82c6634ea96955100db4229, type: 3}
     numberOfObjectToSpawn: 15
     objectDifficulty: 0
-    spawnOffset: {x: 0, y: 0.2, z: 0}
-    spawnRange: 2
+    spawnOffset: {x: 0, y: 0.25, z: 3}
+    spawnRangeList:
+    - -2
+    - -1.5
+    - -1
+    - -0.5
+    - 0
+    - 0.5
+    - 1
+    - 1.5
+    - 2
     obstacleList: []
   spawnCenterPosition: {x: 0, y: 0, z: 20}
 --- !u!114 &767688763
@@ -6095,7 +6113,7 @@ MonoBehaviour:
   m_activeEffects: []
   m_totalScore: 0
   m_scoreMultiplier: 1
-  m_globalSpeed: 2
+  m_globalSpeed: 6
   m_spawnTimer: 1
   spawnDensityAdj: 0
   m_totalScoreText: {fileID: 39997570}
@@ -7916,14 +7934,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027982062}
-  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1939871276}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!212 &1027982064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15754,8 +15772,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27307373, y: 0.5212811, z: 0.094931185}
-  m_Center: {x: -0.015451074, y: -0.012691677, z: -0.09525564}
+  m_Size: {x: 0.27307373, y: 0.5212811, z: 0.074917674}
+  m_Center: {x: -0.015451074, y: -0.012691677, z: -0.021519244}
 --- !u!33 &1939871275
 MeshFilter:
   m_ObjectHideFlags: 0
