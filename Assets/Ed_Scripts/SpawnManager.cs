@@ -36,6 +36,8 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnObstacle(int obstacleId)
     {
+        obstacleId = Random.Range(0, obstaclePrefabList.Length);
+
         for (int i = 0; i < obstaclePrefabList[obstacleId].obstacleList.Count; i++)
         {
             if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)

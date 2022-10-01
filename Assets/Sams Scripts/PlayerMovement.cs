@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float decceleration = 3.0f;
     public float velPower = 1.5f;
 
+    public float m_playerDamage = 0f;
+
 
     private void Awake()
     {
@@ -34,7 +36,12 @@ public class PlayerMovement : MonoBehaviour
         xAxis = playerInput.x;
     }
 
-   
+    public void OnTriggerEnter(Collider other)
+    {
+        m_playerDamage += 1;
+        rb.AddForce(Vector3.up * m_playerDamage, ForceMode.Impulse);
+    }
+
 
     private void FixedUpdate()
     {
