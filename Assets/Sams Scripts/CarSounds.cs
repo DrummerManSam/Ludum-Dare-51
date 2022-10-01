@@ -7,10 +7,12 @@ public class CarSounds : MonoBehaviour
 
 
     public AudioClip carBeep;
+    private AudioSource carSource;
 
     public void Start()
     {
-        GetComponent<AudioSource>().clip = carBeep;
+        
+        carSource = GetComponent<AudioSource>();
     }
 
 
@@ -18,7 +20,8 @@ public class CarSounds : MonoBehaviour
     {
         if(player.gameObject.CompareTag("Player"))
             {
-                GetComponent<AudioSource>().Play();
+                carSource.PlayOneShot(carBeep);
+                print("This is working");
             }
     }
 
