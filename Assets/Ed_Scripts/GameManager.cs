@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private float m_spawnTimer = 1f;
     public float spawnTimer { get { return m_spawnTimer; } }
 
-    private float timer = 0f;
+    private float timer = 100f;
 
     [SerializeField]
     private TextMeshProUGUI m_totalScoreText;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
-            m_globalSpeed += Time.deltaTime;
+            m_globalSpeed += Time.deltaTime * Time.deltaTime;
 
             timer += Time.deltaTime;
 
@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
         m_countDownPause = true;
         m_countDownText.text = "";
         m_countDownTimer = 10;
+        timer = 100f;
 
         for (int i = 0; i < m_activeEffects.Count; i++)
         {

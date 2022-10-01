@@ -18,6 +18,8 @@ public class ObstacleBase
 
     public Vector3 spawnOffset;
 
+    public int spawnRange = 4;
+
     [HideInInspector]
     public List<GameObject> obstacleList;
 }

@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
-        spawnCenterPosition = new Vector3(Camera.main.transform.position.x, 0f, 0f);
+        spawnCenterPosition.x = Camera.main.transform.position.x;
 
     }
 
@@ -40,8 +40,9 @@ public class SpawnManager : MonoBehaviour
         {
             if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)
             {
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition;
-                obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true); 
+                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(Random.Range(-obstaclePrefabList[obstacleId].spawnRange, obstaclePrefabList[obstacleId].spawnRange + 1), 0f ,0f);
+                obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
+                return;
             }
         }
     }

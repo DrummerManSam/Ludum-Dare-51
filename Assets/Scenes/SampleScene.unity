@@ -203,11 +203,12 @@ MonoBehaviour:
   obstaclePrefabList:
   - obstacleName: Single_Barrier
     obstaclePrefab: {fileID: 5719487518452461485, guid: 92d8c6c303e77f4438b21e30d8fff094, type: 3}
-    numberOfObjectToSpawn: 15
+    numberOfObjectToSpawn: 25
     objectDifficulty: 0
     spawnOffset: {x: 0, y: 0, z: 0}
+    spawnRange: 4
     obstacleList: []
-  spawnCenterPosition: {x: 0, y: 0, z: 100}
+  spawnCenterPosition: {x: 0, y: 0, z: 20}
 --- !u!114 &275003213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_totalScore: 0
   m_scoreMultiplier: 1
   m_globalSpeed: 1
-  m_spawnTimer: 1
+  m_spawnTimer: 3
   m_totalScoreText: {fileID: 302522515}
   m_hasGameStarted: 0
   m_countDownPause: 0
