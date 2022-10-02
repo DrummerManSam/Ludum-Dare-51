@@ -6114,7 +6114,7 @@ MonoBehaviour:
   m_activeEffects: []
   m_totalScore: 0
   m_scoreMultiplier: 1
-  m_globalSpeed: 12
+  m_globalSpeed: 5
   m_spawnTimer: 0.8
   spawnDensityAdj: 0
   m_totalScoreText: {fileID: 39997570}
@@ -15776,12 +15776,16 @@ MonoBehaviour:
   decceleration: 2
   velPower: 1.5
   playerDamage: 5
+  isDead: 0
   deathClip:
   - {fileID: 8300000, guid: e58325954c0c22849afd1e7da1f8b83c, type: 3}
   - {fileID: 8300000, guid: d20854fd626ce124d877e6f11c2ff1ee, type: 3}
-  m_aliveConstraints: 0
+  - {fileID: 8300000, guid: 42679ef6178b7724ab1a50ff0996161c, type: 3}
+  - {fileID: 8300000, guid: f289c54ef05bcb24fb9d8559a2fb4901, type: 3}
+  m_aliveConstraints: 112
   m_deathConstraints: 8
   m_deathMaterial: {fileID: 13400000, guid: 2372820128454164f8e6b0c0c6189889, type: 2}
+  m_aliveMaterial: {fileID: 13400000, guid: 73e4ad2ec3982184fba894a3073584ec, type: 2}
 --- !u!114 &1939871279
 MonoBehaviour:
   m_ObjectHideFlags: 0

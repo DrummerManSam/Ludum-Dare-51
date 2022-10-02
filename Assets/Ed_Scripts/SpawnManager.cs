@@ -50,4 +50,16 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetAllObstacles()
+    {
+        for (int i = 0; i < obstaclePrefabList.Length; i++)
+        {
+
+            for (int j = 0; j < obstaclePrefabList[i].obstacleList.Count; j++)
+            {
+                obstaclePrefabList[i].obstacleList[j].SetActive(false);
+            }
+        }
+    }
 }

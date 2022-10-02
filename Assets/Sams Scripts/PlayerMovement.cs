@@ -24,7 +24,10 @@ public class PlayerMovement : MonoBehaviour
     public float velPower = 1.5f;
 
     public float playerDamage = 1f;
+
+    [SerializeField]
     private bool isDead = false;
+    public bool IsDead { get { return isDead; } }
 
     private Animator m_animator;
     private SpriteRenderer m_sprite;
@@ -43,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private PhysicMaterial m_deathMaterial;
 
+    [SerializeField]
+    private PhysicMaterial m_aliveMaterial;
+
+    private Vector3 startPos;
+    private Quaternion startRos;
+
     private void Awake()
     {
         if(instance == null)
@@ -53,7 +62,9 @@ public class PlayerMovement : MonoBehaviour
         m_sprite = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         aSource = GetComponent<AudioSource>();
-
+        startPos = transform.position;
+        startRos = transform.rotation;
+        m_aliveConstraints = rb.constraints;
     }
 
     public void OnMovement(InputValue input)
@@ -68,16 +79,26 @@ public class PlayerMovement : MonoBehaviour
         if (collision.transform.tag != "Obstacle")
             return;
 
-        
-
         isDead = true;
         aSource.pitch = Random.Range(0.9f, 1.1f);
         aSource.PlayOneShot(deathClip[Random.Range(0, deathClip.Length)]);
         boxCollider.material = m_deathMaterial;
         rb.constraints = m_deathConstraints;
         rb.AddForce(playerDamage * collision.impulse, ForceMode.Impulse);
-        print(playerDamage * collision.impulse.magnitude);
         m_animator.SetBool("Death", true);
+    }
+
+    public void ResetPlayer()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.position = startPos;
+        rb.rotation = startRos;
+        boxCollider.material = m_aliveMaterial;
+        rb.constraints = m_aliveConstraints;
+        m_animator.SetBool("Death", false);
+        isDead = false;
+
     }
 
 

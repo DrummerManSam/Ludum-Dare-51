@@ -19,9 +19,12 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private float highPitch = 1.1f;
 
+    public float explosionMagnitude = 5f;
+
     private Rigidbody rb;
 
     public AudioClip carBeep;
+    public AudioClip carExplosionClip;
     private AudioSource carSource;
 
     public void Awake()
@@ -40,6 +43,20 @@ public class ObstacleController : MonoBehaviour
         rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * -transform.forward * Time.deltaTime, ForceMode.VelocityChange);
         rb.AddTorque(-rb.angularVelocity * factor);
     }
+
+    /*
+    public void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.relativeVelocity.magnitude > explosionMagnitude)
+        {
+            carSource.pitch = Random.Range(lowPitch, highPitch);
+            carSource.PlayOneShot(carExplosionClip);
+            Invoke("OnDeath", carExplosionClip.length);
+        }
+          
+    }
+    */
 
     public void OnTriggerEnter(Collider other)
     {

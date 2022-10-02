@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Runtime.CompilerServices;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
-           // m_globalSpeed += Time.deltaTime/2;
+            if (PlayerMovement.instance.IsDead && PlayerMovement.instance.playerInput != Vector2.zero)
+                OnGameEnd();
 
             timer += Time.deltaTime;
 
@@ -172,11 +174,14 @@ public class GameManager : MonoBehaviour
         m_countDownTimer = 10;
         timer = 100f;
         m_signController.SwitchSprites(false);
+        SpawnManager.instance.ResetAllObstacles();
+        PlayerMovement.instance.ResetPlayer();
 
         for (int i = 0; i < m_activeEffects.Count; i++)
         {
             m_activeEffects[i].StopEffect();
         }
     }
+
 
 }
