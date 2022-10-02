@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour
     private float m_chaosFactor = 0f;
     public float chaosFactor { get { return m_chaosFactor; } set { m_chaosFactor = value; } }
 
+    [SerializeField]
+    private bool m_isHomming = false;
+    public bool isHomming { get { return m_isHomming; } set { m_isHomming = value; } }
+
     public void Awake()
     {
         if (instance != null)
