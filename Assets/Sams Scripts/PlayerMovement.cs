@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRos;
 
+    private KeyCode restartGame = KeyCode.R;
+    private bool isDone = false;
+
     private void Awake()
     {
         if(instance == null)
@@ -101,6 +105,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void ResetTheGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Update()
+    {
+       if(Input.GetKeyDown(restartGame))
+        {
+            isDone = false;
+            if(!isDone)
+            {
+                ResetTheGame();
+            }
+        }
+    }
 
 
     private void FixedUpdate()
