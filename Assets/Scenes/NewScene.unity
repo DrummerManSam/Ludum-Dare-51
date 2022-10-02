@@ -15778,6 +15778,7 @@ MonoBehaviour:
   playerDamage: 5
   deathClip:
   - {fileID: 8300000, guid: e58325954c0c22849afd1e7da1f8b83c, type: 3}
+  - {fileID: 8300000, guid: d20854fd626ce124d877e6f11c2ff1ee, type: 3}
   m_aliveConstraints: 0
   m_deathConstraints: 8
   m_deathMaterial: {fileID: 13400000, guid: 2372820128454164f8e6b0c0c6189889, type: 2}

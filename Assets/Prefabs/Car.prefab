@@ -417,7 +417,7 @@ MonoBehaviour:
   deathTime: 1
   lowPitch: 1
   highPitch: 1.1
-  carBeep: {fileID: 8300000, guid: 94b2de4178bce4943813ba46b4f4fa3d, type: 3}
+  carBeep: {fileID: 8300000, guid: 3b27bcfb639397b43b2dbd6876117777, type: 3}
 --- !u!65 &7288505574548942827
 BoxCollider:
   m_ObjectHideFlags: 0
