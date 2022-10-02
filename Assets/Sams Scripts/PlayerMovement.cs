@@ -56,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode restartGame = KeyCode.R;
     private bool isDone = false;
 
+    public GameObject musicStop;
+
+
 
     private void Awake()
     {
@@ -72,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         startPos = transform.position;
         startRos = transform.rotation;
         m_aliveConstraints = rb.constraints;
+        musicStop = GameObject.FindGameObjectWithTag("Music");
+        
     }
 
     public void OnMovement(InputValue input)
@@ -93,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
         rb.constraints = m_deathConstraints;
         rb.AddForce(collision.impulse, ForceMode.Impulse);
         m_animator.SetBool("Death", true);
+        musicStop.GetComponent<AudioSource>().enabled = false;
+
     }
 
     public void ResetPlayer()

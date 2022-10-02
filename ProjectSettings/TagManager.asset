@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - DeathBarrier
+  - Music
   layers:
   - Default
   - TransparentFX
