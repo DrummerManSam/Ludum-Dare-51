@@ -76,13 +76,15 @@ public class ObstacleController : MonoBehaviour
 
     public void FixedUpdate()
     {
-
         rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * (m_finalDirection) * Time.deltaTime, ForceMode.VelocityChange);
 
         if(GameManager.instance.isHomming &&  Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > 3f)
         {
             rb.MoveRotation(Quaternion.LookRotation(PlayerMovement.instance.transform.position - transform.position));
-            rb.AddForce( (m_finalDirection - transform.position) * Time.deltaTime * carSteerTowardsPower, ForceMode.VelocityChange);
+            Vector3 direciton = PlayerMovement.instance.transform.position - transform.position;
+            direciton.y = 0f;
+            direciton.z = 0f;
+            rb.AddForce((direciton) * Time.deltaTime, ForceMode.VelocityChange);
         }
              
        

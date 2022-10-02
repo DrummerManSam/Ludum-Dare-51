@@ -42,8 +42,7 @@ public class GameManager : MonoBehaviour
 
     private float timer = 100f;
 
-    [SerializeField]
-    private TextMeshProUGUI m_totalScoreText;
+    public TextMeshPro m_totalScoreText;
 
     [SerializeField]
     private bool m_hasGameStarted = false;

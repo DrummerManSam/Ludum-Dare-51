@@ -393,7 +393,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3986301889251558803}
   serializedVersion: 2
-  m_Mass: 6
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -423,6 +423,7 @@ MonoBehaviour:
   carBeep: {fileID: 8300000, guid: 3b27bcfb639397b43b2dbd6876117777, type: 3}
   carStop: {fileID: 8300000, guid: 7c04510e1a79fa148948b6674faacf5a, type: 3}
   bouncyMat: {fileID: 13400000, guid: 2372820128454164f8e6b0c0c6189889, type: 2}
+  carSteerTowardsPower: 5
 --- !u!65 &7288505574548942827
 BoxCollider:
   m_ObjectHideFlags: 0

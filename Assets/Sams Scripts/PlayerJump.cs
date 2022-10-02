@@ -30,6 +30,10 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        if (PlayerMovement.instance.IsDead)
+            return;
+
+
         isGrounded = IsGrounded();
 
         if (rb.velocity.y <= 0)
