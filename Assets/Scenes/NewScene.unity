@@ -6187,8 +6187,11 @@ MonoBehaviour:
   - {fileID: 4838566931404803049, guid: f2f21b5d08b69974dad326e9572fc037, type: 3}
   - {fileID: 5738721686719573533, guid: 83124829474b8904990c3bb351d92429, type: 3}
   - {fileID: 7161646809625807632, guid: b98bc15b2b4636349be35e3b546dcb27, type: 3}
+  - {fileID: 9041167863152241337, guid: ea23554c4cc17504db37a0b8f5779151, type: 3}
   effectSpawnPos1: {fileID: 724528223}
   effectSpawnPos2: {fileID: 1707552904}
+  nearMissPointPreab: {fileID: 4688085786414672685, guid: 10d491e01571a1b439728ef5c8c92227, type: 3}
+  nearMissPointSetPos: {fileID: 223393012}
 --- !u!114 &767688763
 MonoBehaviour:
   m_ObjectHideFlags: 0

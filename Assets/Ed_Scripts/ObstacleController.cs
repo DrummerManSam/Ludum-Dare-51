@@ -105,6 +105,7 @@ public class ObstacleController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.instance.AddPoint();
+            SpawnManager.instance.GetNearMissPoint(transform.position);
             carSource.pitch = Random.Range(lowPitch, highPitch);
             carSource.PlayOneShot(carBeep);
         }

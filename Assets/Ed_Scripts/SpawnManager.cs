@@ -33,6 +33,14 @@ public class SpawnManager : MonoBehaviour
 
     private int iconNumber = 0;
 
+    [SerializeField]
+    private GameObject nearMissPointPreab;
+
+    private List<GameObject> nearMissPointsList = new List<GameObject>();
+
+    [SerializeField]
+    private Transform nearMissPointSetPos;
+
     public void Awake()
     {
         if(instance != null)
@@ -55,6 +63,13 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject tempObj = Instantiate(explosionPrefab, this.transform);
             explosionList.Add(tempObj);
+            tempObj.SetActive(false);
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject tempObj = Instantiate(nearMissPointPreab, this.transform);
+            nearMissPointsList.Add(tempObj);
             tempObj.SetActive(false);
         }
 
@@ -87,6 +102,20 @@ public class SpawnManager : MonoBehaviour
             {
                 explosionList[i].transform.position = newPosition;
                 explosionList[i].SetActive(true);
+                return;
+            }
+        }
+    }
+
+    public void GetNearMissPoint(Vector3 newPosition)
+    {
+        for (int i = 0; i < nearMissPointsList.Count; i++)
+        {
+            if (!nearMissPointsList[i].activeInHierarchy)
+            {
+                nearMissPointsList[i].transform.position = newPosition;
+                nearMissPointsList[i].GetComponent<PointController>().targetPoint = nearMissPointSetPos.position;
+                nearMissPointsList[i].SetActive(true);
                 return;
             }
         }

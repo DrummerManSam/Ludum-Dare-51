@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SignController m_signController;
 
-    [SerializeField]
     private List<EffectController> tempEffectList = new List<EffectController>();
 
     public void Awake()

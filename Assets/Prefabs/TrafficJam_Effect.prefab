@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconSetPosition: {x: 0, y: 0, z: 0}
   effectSelected: 0
-  iconSetPositionSpeed: 0.85
+  iconSetPositionSpeed: 2.5
   iconSetScaleSpeed: 0.85
   iconDecesentAmount: 1.5
-  iconDescentSpeed: 0.95
+  iconDescentSpeed: 0.85
