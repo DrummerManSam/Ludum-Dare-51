@@ -111,9 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb58d3124e67fa4ba8253f2fd6ac47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectID: 0
   iconSetPosition: {x: 0, y: 0, z: 0}
   effectSelected: 0
   iconSetPositionSpeed: 3
   iconSetScaleSpeed: 1
   iconDecesentAmount: 1.5
   iconDescentSpeed: 0.85
+  effectOnlyOneTime: 1

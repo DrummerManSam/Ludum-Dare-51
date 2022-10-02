@@ -23,8 +23,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float iconSetPositionAdjuster = 0.5f;
 
-    [SerializeField]
-    private GameObject[] effectList;
+    public List<GameObject> effectList = new List<GameObject>();
 
     [SerializeField]
     private Transform effectSpawnPos1;
@@ -45,7 +44,7 @@ public class SpawnManager : MonoBehaviour
     private float m_obstacleSizeAdjuster = 0f;
     public float obstacleSizeAdjuster { get { return m_obstacleSizeAdjuster; } set { m_obstacleSizeAdjuster = value; } }
 
-    public enum SpawnOrder { Linear, Random, Jam};
+    public enum SpawnOrder { Linear, Random, Jam };
 
     public SpawnOrder currentSpawnOrder = SpawnOrder.Linear;
 
@@ -58,7 +57,10 @@ public class SpawnManager : MonoBehaviour
     private bool m_trucksAllowed = false;
     public bool trucksAllowed { get { return m_trucksAllowed; } set { m_trucksAllowed = value; } }
 
+    [SerializeField]
+    private int truckSpawnEveryNumber = 5;
 
+    private int truckSpawnNumber = 0;
 
     public void Awake()
     {
@@ -66,6 +68,8 @@ public class SpawnManager : MonoBehaviour
             Destroy(instance);
 
         instance = this;
+
+        truckSpawnNumber = truckSpawnEveryNumber;
 
         for (int i = 0; i < obstaclePrefabList.Length; i++)
         {
@@ -98,11 +102,18 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnObstacle(int obstacleId)
     {
+      
 
-        if (trucksAllowed)
-            obstacleId = Random.Range(0, obstaclePrefabList.Length);
+        if (trucksAllowed && truckSpawnNumber > truckSpawnEveryNumber)
+        {
+            truckSpawnNumber = 0;
+            obstacleId = 1;
+        }
         else
             obstacleId = 0;
+
+        if(trucksAllowed)
+            truckSpawnNumber++;
 
         if (currentSpawnOrder == SpawnOrder.Jam)
         {
@@ -192,9 +203,21 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnEffectChoice()
     {
+
+        int num = Random.Range(0, effectList.Count);
         
-        GameObject tempEffect1 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos1.position, effectSpawnPos1.rotation);  
-        GameObject tempEffect2 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos2.position, effectSpawnPos2.rotation);    
+
+        GameObject tempEffect1 = Instantiate(effectList[num], effectSpawnPos1.position, effectSpawnPos1.rotation);
+        tempEffect1.GetComponent<EffectController>().effectID = num;
+
+        num++;
+
+        if (num >= effectList.Count)
+            num = 0;
+
+        GameObject tempEffect2 = Instantiate(effectList[num], effectSpawnPos2.position, effectSpawnPos2.rotation);
+        tempEffect2.GetComponent<EffectController>().effectID = num;
+
     }
 
     public Vector3 SetIconSitPosition()

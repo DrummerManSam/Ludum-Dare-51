@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1becf2a3be7e2fc419bc0e9c8122425e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01745be46475eab44ad100f7954abbc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,10 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747052365ce594c42b868390e2de76d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectID: 0
   iconSetPosition: {x: 0, y: 0, z: 0}
   effectSelected: 0
   iconSetPositionSpeed: 3
   iconSetScaleSpeed: 1
   iconDecesentAmount: 1.5
   iconDescentSpeed: 0.85
+  effectOnlyOneTime: 0
   sizeValue: 0.1

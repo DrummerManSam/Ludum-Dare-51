@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float m_totalScore = 0;
+    public float totalScore { get { return m_totalScore; } }
+
+    [SerializeField]
+    private GameObject endBoardObj;
 
     [SerializeField]
     private float m_scoreMultiplier = 1;
@@ -79,8 +83,8 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
-          //  if (PlayerMovement.instance.IsDead)
-           //     OnGameEnd();
+            if (PlayerMovement.instance.IsDead)
+                endBoardObj.SetActive(true);
 
             if (m_countDownPause)
                 return;
@@ -130,7 +134,10 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < tempEffectList.Count; i++)
         {
             if (tempEffectList[i].EffectSelected)
+            {
                 tempEffectList[i].IntEffect();
+            }
+                
 
                 if (!tempEffectList[i].EffectSelected)
                 Destroy(tempEffectList[i].gameObject);

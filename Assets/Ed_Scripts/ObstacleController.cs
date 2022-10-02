@@ -71,12 +71,17 @@ public class ObstacleController : MonoBehaviour
             }
         }
 
+        if (GameManager.instance.chaosFactor != 0)
+            m_obstacleSpeed = Random.Range(-GameManager.instance.globalSpeed, GameManager.instance.chaosFactor);
+
         m_spawnTime = Time.time;
     }
 
     public void FixedUpdate()
     {
-        rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * (m_finalDirection) * Time.deltaTime, ForceMode.VelocityChange);
+
+
+        rb.AddForce((m_obstacleSpeed + GameManager.instance.globalSpeed) * (m_finalDirection) * Time.deltaTime, ForceMode.VelocityChange);
 
         if(GameManager.instance.isHomming &&  Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > 3f)
         {

@@ -98,13 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775af65c28edc9e43b2b247115d33749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectID: 0
   iconSetPosition: {x: 0, y: 0, z: 0}
   effectSelected: 0
   iconSetPositionSpeed: 3
   iconSetScaleSpeed: 1
   iconDecesentAmount: 1.5
   iconDescentSpeed: 0.85
-  chasoValue: 1
+  effectOnlyOneTime: 1
 --- !u!65 &3685368272354968781
 BoxCollider:
   m_ObjectHideFlags: 0

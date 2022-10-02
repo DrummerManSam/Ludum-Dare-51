@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EffectController : MonoBehaviour
 {
+    public int effectID = 0;
+
     [SerializeField]
     private Vector3 iconSetPosition;
 
@@ -25,15 +27,19 @@ public class EffectController : MonoBehaviour
 
     private Vector3 spawnPos;
 
+    public bool effectOnlyOneTime = false;
+
     public void OnEnable()
     {
+
         spawnPos = transform.position;
         GameManager.instance.AddEffectToList(this);
     }
 
     public virtual void IntEffect()
     {
-        
+        if (effectOnlyOneTime)
+            SpawnManager.instance.effectList.RemoveAt(effectID);
     }
 
     public void Update()
