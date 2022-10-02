@@ -18,9 +18,9 @@ public class SignController : MonoBehaviour
         m_spriteRend = GetComponent<SpriteRenderer>();
     }
 
-    public void SwitchSprites(bool isGreen)
+    public void SwitchSprites(bool isStopped)
     {
-        if (!isGreen) m_spriteRend.sprite = stopSprite;
-        else if (isGreen) m_spriteRend.sprite = goSprite;
+        if (!isStopped) m_spriteRend.sprite = goSprite;
+        else if (isStopped) m_spriteRend.sprite = stopSprite;
     }
 }

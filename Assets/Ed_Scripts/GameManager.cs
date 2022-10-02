@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public delegate void OnCountDown();
+    public static event OnCountDown onCountDownReached;
+    public static event OnCountDown onCountDownStarted;
+
     [SerializeField]
     private float m_countDownTimer = 10;
     public float countDownTimer { get { return m_countDownTimer; } }
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float m_scoreMultiplier = 1;
+    public float scoreMultiplier { get { return m_scoreMultiplier; } set { m_scoreMultiplier = value; } }
 
     [SerializeField]
     private float m_globalSpeed = 1;
@@ -52,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool m_countDownPause = false;
+    public bool countDownPause { get { return m_countDownPause; } }
 
     [SerializeField]
     private SignController m_signController;
@@ -68,6 +74,8 @@ public class GameManager : MonoBehaviour
             Effect tempEffect = effectParents.transform.GetChild(i).GetComponent<Effect>();
             m_potentialEffects.Add(tempEffect);
         }
+
+        onCountDownReached += CountDownReached;
         
     }
 
@@ -77,6 +85,9 @@ public class GameManager : MonoBehaviour
         {
             if (PlayerMovement.instance.IsDead && PlayerMovement.instance.playerInput != Vector2.zero)
                 OnGameEnd();
+
+            if (m_countDownPause)
+                return;
 
             timer += Time.deltaTime;
 
@@ -92,19 +103,12 @@ public class GameManager : MonoBehaviour
 
                 SpawnManager.instance.SpawnObstacle(0);
             }
-
-            if (!m_countDownPause)
-            {
-                m_totalScore += Time.deltaTime * m_scoreMultiplier;
-
-                m_totalScoreText.text = "Score: " + (int)m_totalScore;
-
+                
                 m_countDownTimer -= Time.deltaTime;
 
-                if (m_countDownTimer < 0)
-                    CountDownReached();
-            }
-
+                if (m_countDownTimer < 0 && !PlayerMovement.instance.IsDead)
+                    onCountDownReached?.Invoke();
+            
 
         }
         else
@@ -114,11 +118,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddPoint()
+    {
+        m_totalScore += 1;
+        m_totalScoreText.text = "Score: " + (int)m_totalScore;
+    }
+
     public void CountDownReached()
     {
         //ResetTimer and Pause Next CountDown;
         m_countDownPause = true;
-        m_signController.SwitchSprites(false);
+        m_signController.SwitchSprites(m_countDownPause);
 
         //How to chose what effect raiting we can allow:
         int chosenEffectRating = Random.Range(1, 10);
@@ -135,23 +145,24 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (nextEffect == null)
-            return;
+        //if (nextEffect == null)
+        //    return;
 
         //Initiate the new Effect:
-        nextEffect.InitEffect();
+       // nextEffect.InitEffect();
 
         //Add it to the Effect list;
-        m_activeEffects.Add(nextEffect);
+      //  m_activeEffects.Add(nextEffect);
 
         Invoke("CountDownReset", m_countDownLag);
     }
 
     public void CountDownReset()
     {
+        onCountDownStarted?.Invoke();
         m_countDownTimer = 10;
-        m_signController.SwitchSprites(true);
         m_countDownPause = false;
+        m_signController.SwitchSprites(m_countDownPause);
     }
 
     //Called when the Game actually starts:
@@ -163,7 +174,7 @@ public class GameManager : MonoBehaviour
         m_activeEffects.Clear();
         m_scoreMultiplier = 1;
         m_totalScore = 0;
-        m_signController.SwitchSprites(true);
+        m_signController.SwitchSprites(m_countDownPause);
     }
 
     //Called when the Game Ends:
@@ -173,7 +184,7 @@ public class GameManager : MonoBehaviour
         m_countDownPause = true;
         m_countDownTimer = 10;
         timer = 100f;
-        m_signController.SwitchSprites(false);
+        m_signController.SwitchSprites(m_countDownPause);
         SpawnManager.instance.ResetAllObstacles();
         PlayerMovement.instance.ResetPlayer();
 

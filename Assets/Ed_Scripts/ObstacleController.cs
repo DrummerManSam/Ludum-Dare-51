@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 public class ObstacleController : MonoBehaviour
 {
@@ -21,11 +23,16 @@ public class ObstacleController : MonoBehaviour
 
     public float explosionMagnitude = 5f;
 
+    [SerializeField]
+    private float m_aliveTimer = 10f;
+
     private Rigidbody rb;
+    private bool pauseObj = false;
 
     public AudioClip carBeep;
-    public AudioClip carExplosionClip;
+    public AudioClip carStop;
     private AudioSource carSource;
+    private float m_spawnTime;
 
     public void Awake()
     {
@@ -33,13 +40,28 @@ public class ObstacleController : MonoBehaviour
 
         carSource = GetComponent<AudioSource>();
     }
+
     public void OnEnable()
     {
+        GameManager.onCountDownReached += OnCountDownReached;
+        GameManager.onCountDownStarted += OnCountDownRestarted;
+        carSource.loop = true;
         carSource.Play();
+
+        m_spawnTime = Time.time;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
+        // if (Time.time - m_spawnTime > m_aliveTimer)
+        // {
+        //  TriggerExplosion();
+        // return;
+        //  }
+
+        if (pauseObj)
+            return;
+
         rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * -transform.forward * Time.deltaTime, ForceMode.VelocityChange);
         rb.AddTorque(-rb.angularVelocity * factor);
     }
@@ -58,11 +80,31 @@ public class ObstacleController : MonoBehaviour
     }
     */
 
+    public void OnCountDownRestarted()
+    {
+       // pauseObj = false;
+      //  carSource.loop = true;
+      //  carSource.Play();
+    }
+
+    public void OnCountDownReached()
+    {
+        // pauseObj = true;
+        SpawnManager.instance.GetExplosion(transform.position);
+        gameObject.SetActive(false);
+       // carSource.loop = false;
+       // carSource.pitch = Random.Range(lowPitch, highPitch);
+       // carSource.PlayOneShot(carStop);
+      //  rb.velocity = UnityEngine.Vector3.zero;
+      //  rb.angularVelocity = UnityEngine.Vector3.zero;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.CompareTag("Player"))
         {
+            GameManager.instance.AddPoint();
             carSource.pitch = Random.Range(lowPitch, highPitch);
             carSource.PlayOneShot(carBeep);
         }
@@ -78,6 +120,8 @@ public class ObstacleController : MonoBehaviour
 
     public void OnDisable()
     {
+        GameManager.onCountDownReached -= OnCountDownReached;
+        GameManager.onCountDownStarted -= OnCountDownRestarted;
         rb.velocity = UnityEngine.Vector3.zero;
         rb.angularVelocity = UnityEngine.Vector3.zero;
     }

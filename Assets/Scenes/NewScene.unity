@@ -6096,6 +6096,7 @@ MonoBehaviour:
     - 2
     obstacleList: []
   spawnCenterPosition: {x: 0, y: 0, z: 20}
+  explosionPrefab: {fileID: 2597372390030616081, guid: 263695046e93f4d41ac7368fc280df7b, type: 3}
 --- !u!114 &767688763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6109,7 +6110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_countDownTimer: 10
-  m_countDownLag: 0.1
+  m_countDownLag: 10
   effectParents: {fileID: 1831714019}
   m_activeEffects: []
   m_totalScore: 0

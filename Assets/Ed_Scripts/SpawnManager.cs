@@ -12,6 +12,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private Vector3 spawnCenterPosition;
 
+    [SerializeField]
+    private GameObject explosionPrefab;
+
+    private List<GameObject> explosionList = new List<GameObject>();
+
     public void Awake()
     {
         if(instance != null)
@@ -30,6 +35,13 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
+        for(int i = 0; i < 20; i++)
+        {
+            GameObject tempObj = Instantiate(explosionPrefab, this.transform);
+            explosionList.Add(tempObj);
+            tempObj.SetActive(false);
+        }
+
         spawnCenterPosition.x = Camera.main.transform.position.x;
 
     }
@@ -46,6 +58,19 @@ public class SpawnManager : MonoBehaviour
 
                 obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f) ;
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
+                return;
+            }
+        }
+    }
+
+    public void GetExplosion(Vector3 newPosition)
+    {
+        for(int i = 0; i < explosionList.Count; i++)
+        {
+            if (!explosionList[i].activeInHierarchy)
+            {
+                explosionList[i].transform.position = newPosition;
+                explosionList[i].SetActive(true);
                 return;
             }
         }

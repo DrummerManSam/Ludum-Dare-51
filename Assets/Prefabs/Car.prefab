@@ -418,8 +418,10 @@ MonoBehaviour:
   lowPitch: 1
   highPitch: 1.1
   explosionMagnitude: 10
+  m_aliveTimer: 10
   carBeep: {fileID: 8300000, guid: 3b27bcfb639397b43b2dbd6876117777, type: 3}
   carExplosionClip: {fileID: 8300000, guid: bf3b8d06c442bcc419d935328b686440, type: 3}
+  carStop: {fileID: 8300000, guid: 7c04510e1a79fa148948b6674faacf5a, type: 3}
 --- !u!65 &7288505574548942827
 BoxCollider:
   m_ObjectHideFlags: 0
