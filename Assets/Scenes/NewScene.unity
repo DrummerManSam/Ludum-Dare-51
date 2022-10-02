@@ -6140,7 +6140,7 @@ MonoBehaviour:
   currentSpawnOrder: 1
   spawnCenter: {fileID: 463820848}
   m_trucksAllowed: 0
-  truckSpawnEveryNumber: 8
+  truckSpawnEveryNumber: 5
 --- !u!114 &767688763
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -132,8 +132,10 @@ public class SpawnManager : MonoBehaviour
                     obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[tempCounter], 0f, 0f);
                     obstaclePrefabList[obstacleId].obstacleList[i].transform.rotation = spawnCenter.rotation;
 
-
-                    obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster/2, 0f);
+                    if(obstacleId == 0)
+                        obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, 0f, 0f);
+                    else
+                        obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(0f, m_obstacleSizeAdjuster, m_obstacleSizeAdjuster);
                     obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                     tempCounter++;
                 }
@@ -167,7 +169,11 @@ public class SpawnManager : MonoBehaviour
                         spawnLinearId = 0;
                 }
 
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster/2, 0f);
+                if (obstacleId == 0)
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, 0f, 0f);
+                else
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(0f, m_obstacleSizeAdjuster, m_obstacleSizeAdjuster);
+
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                 return;
             }
