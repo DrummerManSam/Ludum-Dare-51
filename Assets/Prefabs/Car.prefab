@@ -420,7 +420,6 @@ MonoBehaviour:
   explosionMagnitude: 10
   m_aliveTimer: 10
   carBeep: {fileID: 8300000, guid: 3b27bcfb639397b43b2dbd6876117777, type: 3}
-  carExplosionClip: {fileID: 8300000, guid: bf3b8d06c442bcc419d935328b686440, type: 3}
   carStop: {fileID: 8300000, guid: 7c04510e1a79fa148948b6674faacf5a, type: 3}
 --- !u!65 &7288505574548942827
 BoxCollider:
@@ -433,8 +432,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 0.84, z: 0.874478}
-  m_Center: {x: 0, y: 0.24211888, z: -0.000000059604645}
+  m_Size: {x: 1.3, y: 0.9924639, z: 0.874478}
+  m_Center: {x: 0, y: 0.31835082, z: -0.000000059604645}
 --- !u!82 &4472983604557347306
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,7 +455,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -466,23 +465,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.02
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
+      time: 0.10656738
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.0204082
+      outSlope: -1.0204082
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

@@ -43,12 +43,12 @@ public class SpawnManager : MonoBehaviour
 
     public void Awake()
     {
-        if(instance != null)
-            Destroy(this);
-        else
-            instance = this;
+        if (instance != null)
+            Destroy(instance);
 
-        for(int i = 0; i < obstaclePrefabList.Length; i++)
+        instance = this;
+
+        for (int i = 0; i < obstaclePrefabList.Length; i++)
         {
 
             for(int j = 1; j < obstaclePrefabList[i].numberOfObjectToSpawn; j++)

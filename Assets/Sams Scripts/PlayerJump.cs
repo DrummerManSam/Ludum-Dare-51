@@ -8,10 +8,14 @@ public class PlayerJump : MonoBehaviour
     public float jumpForce = 0.5f;
     public bool isGrounded;
     public bool isJumping;
+    public bool canJump;
     public float jumpCutMultiplier = 0.5f;
     Rigidbody rb;
 
     private Animator m_animator;
+
+    [SerializeField]
+    private float rayCastDownDepth = 0.1f;
 
     private void Awake()
     {
@@ -26,27 +30,44 @@ public class PlayerJump : MonoBehaviour
 
     void OnCollisionStay()
     {
-        isGrounded = true;
-        isJumping = false;
+       // isGrounded = true;
+      //  isJumping = false;
     }
     void OnCollisionExit()
     {
-        isGrounded = false;
+      //  isGrounded = false;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        isGrounded = IsGrounded();
+
+        if (rb.velocity.y <= 0)
+            canJump = true;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canJump)
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            m_animator.SetTrigger("Jump");
-            isGrounded = false;
+            canJump = false;
             isJumping = true;
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            m_animator.SetTrigger("Jump");   
         }
 
         if (isJumping)
         {
            OnJumpUp();
         }
+    }
+
+    public bool IsGrounded()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, rayCastDownDepth))
+        {
+            isJumping = false;
+            return true;
+        }
+        else 
+            return false;
     }
 
     public void OnJumpUp()

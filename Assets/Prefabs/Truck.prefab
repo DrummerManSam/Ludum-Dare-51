@@ -1073,7 +1073,6 @@ MonoBehaviour:
   explosionMagnitude: 10
   m_aliveTimer: 10
   carBeep: {fileID: 8300000, guid: 729c2e7e9fa1f6145b4dbfc599e48970, type: 3}
-  carExplosionClip: {fileID: 8300000, guid: bf3b8d06c442bcc419d935328b686440, type: 3}
   carStop: {fileID: 8300000, guid: 7c04510e1a79fa148948b6674faacf5a, type: 3}
 --- !u!65 &2666119718967975116
 BoxCollider:
@@ -1086,8 +1085,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.18, y: 0.8299999, z: 1.2730402}
-  m_Center: {x: 0, y: 0.29342413, z: -0.102328956}
+  m_Size: {x: 1.18, y: 0.8975819, z: 1.2730402}
+  m_Center: {x: 0, y: 0.3272151, z: -0.102328956}
 --- !u!82 &4915579017641528937
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1109,7 +1108,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

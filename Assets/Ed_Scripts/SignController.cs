@@ -20,6 +20,9 @@ public class SignController : MonoBehaviour
 
     public void SwitchSprites(bool isStopped)
     {
+        if (m_spriteRend == null)
+            return;
+
         if (!isStopped) m_spriteRend.sprite = goSprite;
         else if (isStopped) m_spriteRend.sprite = stopSprite;
     }

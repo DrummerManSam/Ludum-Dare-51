@@ -102,10 +102,10 @@ public class ObstacleController : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Player"))
+        if (!PlayerMovement.instance.IsDead && other.gameObject.CompareTag("Player"))
         {
             GameManager.instance.AddPoint();
-            SpawnManager.instance.GetNearMissPoint(transform.position);
+            SpawnManager.instance.GetNearMissPoint(other.transform.position);
             carSource.pitch = Random.Range(lowPitch, highPitch);
             carSource.PlayOneShot(carBeep);
         }

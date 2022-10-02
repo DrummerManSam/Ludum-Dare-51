@@ -56,10 +56,13 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode restartGame = KeyCode.R;
     private bool isDone = false;
 
+
     private void Awake()
     {
-        if(instance == null)
-            instance = this;
+        if (instance != null)
+            Destroy(instance);
+
+        instance = this;
 
         rb = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
@@ -107,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetTheGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void Update()

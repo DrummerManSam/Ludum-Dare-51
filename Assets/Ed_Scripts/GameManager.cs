@@ -59,9 +59,10 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         if (instance != null)
-            Destroy(this);
-        else
-            instance = this;
+            Destroy(instance);
+
+
+        instance = this;
 
         onCountDownReached += CountDownReached;
         
@@ -71,8 +72,8 @@ public class GameManager : MonoBehaviour
     {
         if(m_hasGameStarted)
         {
-            if (PlayerMovement.instance.IsDead && PlayerMovement.instance.playerInput != Vector2.zero)
-                OnGameEnd();
+          //  if (PlayerMovement.instance.IsDead)
+           //     OnGameEnd();
 
             if (m_countDownPause)
                 return;
@@ -168,10 +169,16 @@ public class GameManager : MonoBehaviour
         m_countDownPause = true;
         m_countDownTimer = 10;
         timer = 100f;
-        m_signController.SwitchSprites(m_countDownPause);
-        SpawnManager.instance.ResetAllObstacles();
-        PlayerMovement.instance.ResetPlayer();
+      //  m_signController.SwitchSprites(m_countDownPause);
+      //  SpawnManager.instance.ResetAllObstacles();
+      //  PlayerMovement.instance.ResetPlayer();
 
+    }
+
+    public void OnDestroy()
+    {
+        onCountDownReached -= CountDownReached;
+        CancelInvoke();
     }
 
 
