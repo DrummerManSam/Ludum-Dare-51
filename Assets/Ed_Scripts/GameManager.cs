@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
 
     private List<EffectController> tempEffectList = new List<EffectController>();
 
+    private float m_chaosFactor = 0f;
+    public float chaosFactor { get { return m_chaosFactor; } set { m_chaosFactor = value; } }
+
     public void Awake()
     {
         if (instance != null)
@@ -131,6 +134,8 @@ public class GameManager : MonoBehaviour
         }
 
         tempEffectList.Clear();
+        CancelInvoke();
+        CountDownReset();
     }
 
     public void CountDownReached()

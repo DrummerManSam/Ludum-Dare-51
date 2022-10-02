@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -9,8 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private ObstacleBase[] obstaclePrefabList;
 
-    [SerializeField]
-    private Vector3 spawnCenterPosition;
+    public Vector3 spawnCenterPosition;
 
     [SerializeField]
     private GameObject explosionPrefab;
@@ -45,11 +45,13 @@ public class SpawnManager : MonoBehaviour
     private float m_obstacleSizeAdjuster = 0f;
     public float obstacleSizeAdjuster { get { return m_obstacleSizeAdjuster; } set { m_obstacleSizeAdjuster = value; } }
 
-    public enum SpawnOrder { random, linear};
+    public enum SpawnOrder { Linear, Random, Jam};
 
-    public SpawnOrder currentSpawnOrder = SpawnOrder.random;
+    public SpawnOrder currentSpawnOrder = SpawnOrder.Linear;
 
     private int spawnLinearId = 0;
+
+
 
     public void Awake()
     {
@@ -91,15 +93,39 @@ public class SpawnManager : MonoBehaviour
     {
         obstacleId = Random.Range(0, obstaclePrefabList.Length);
 
+        if (currentSpawnOrder == SpawnOrder.Jam)
+        {
+            int numberToSpawn = obstaclePrefabList[0].spawnRangeList.Length;
+            int tempCounter = 0;
+
+            for (int i = 0; i < obstaclePrefabList[obstacleId].obstacleList.Count; i++)
+            {
+                if (tempCounter >= numberToSpawn)
+                    return;
+
+                if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)
+                {
+                    
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[tempCounter], 0f, 0f);
+
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster/2, 0f);
+                    obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
+                    tempCounter++;
+                }
+
+            }
+
+        }
+
         for (int i = 0; i < obstaclePrefabList[obstacleId].obstacleList.Count; i++)
         {
             if (!obstaclePrefabList[obstacleId].obstacleList[i].activeInHierarchy)
             {
                 int SpawnRangeID = Random.Range(0, obstaclePrefabList[obstacleId].spawnRangeList.Length);
 
-                if(currentSpawnOrder == SpawnOrder.random)
+                if(currentSpawnOrder == SpawnOrder.Random)
                 obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f) ;
-                else if(currentSpawnOrder == SpawnOrder.linear)
+                else if(currentSpawnOrder == SpawnOrder.Linear)
                 {
                       obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[spawnLinearId], 0f, 0f);
                       spawnLinearId++;
@@ -108,7 +134,7 @@ public class SpawnManager : MonoBehaviour
                         spawnLinearId = 0;
                 }
 
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster, m_obstacleSizeAdjuster);
+                obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster/2, 0f);
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                 return;
             }
@@ -144,7 +170,8 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnEffectChoice()
     {
-        GameObject tempEffect1 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos1.position, effectSpawnPos1.rotation);
+        
+        GameObject tempEffect1 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos1.position, effectSpawnPos1.rotation);  
         GameObject tempEffect2 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos2.position, effectSpawnPos2.rotation);    
     }
 

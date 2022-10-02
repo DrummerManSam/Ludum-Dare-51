@@ -117,5 +117,4 @@ MonoBehaviour:
   iconSetScaleSpeed: 1
   iconDecesentAmount: 1.5
   iconDescentSpeed: 0.85
-  speedValue: 5
-  densityValue: -0.25
+  chasoValue: 20

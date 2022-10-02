@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class ChaosEffect : EffectController
 {
-    [SerializeField]
-    private float speedValue = 5f;
+    public float chasoValue = 1f;
 
-    [SerializeField]
-    private float densityValue = 0.5f;
     public override void IntEffect()
     {
         base.IntEffect();
 
-            SpawnManager.instance.currentSpawnOrder = SpawnManager.SpawnOrder.random;
-         GameManager.instance.globalSpeed += speedValue;
-         GameManager.instance.spawnTimer += densityValue;
+        GameManager.instance.chaosFactor += chasoValue;
     }
 }
