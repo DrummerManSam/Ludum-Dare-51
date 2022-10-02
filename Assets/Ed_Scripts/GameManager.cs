@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SignController m_signController;
 
+    [SerializeField]
+    private List<EffectController> tempEffectList = new List<EffectController>();
+
     public void Awake()
     {
         if (instance != null)
@@ -110,6 +113,22 @@ public class GameManager : MonoBehaviour
         m_totalScoreText.text = "Score: " + (int)m_totalScore;
     }
 
+    public void AddEffectToList(EffectController tempEffectCon)
+    {
+        tempEffectList.Add(tempEffectCon);
+    }
+
+    public void EffectSelected()
+    {
+        for(int i = 0; i < tempEffectList.Count; i++)
+        {
+            if (!tempEffectList[i].EffectSelected)
+                Destroy(tempEffectList[i].gameObject);
+        }
+
+        tempEffectList.Clear();
+    }
+
     public void CountDownReached()
     {
         //ResetTimer and Pause Next CountDown;
@@ -123,6 +142,9 @@ public class GameManager : MonoBehaviour
 
     public void CountDownReset()
     {
+        if (tempEffectList.Count > 0)
+            tempEffectList[Random.Range(0, tempEffectList.Count)].SelectedEffect();
+
         onCountDownStarted?.Invoke();
         m_countDownTimer = 10;
         m_countDownPause = false;

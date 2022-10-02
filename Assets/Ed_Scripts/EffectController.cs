@@ -9,6 +9,7 @@ public class EffectController : MonoBehaviour
 
     [SerializeField]
     private bool effectSelected = false;
+    public bool EffectSelected { get { return effectSelected; } }
 
     [SerializeField]
     private float iconSetPositionSpeed = 0.05f;
@@ -17,10 +18,18 @@ public class EffectController : MonoBehaviour
     private float iconSetScaleSpeed = 0.05f;
 
     [SerializeField]
-    private float iconDecesentAmount = -1.5f;
+    private float iconDecesentAmount = 1.5f;
 
     [SerializeField]
     private float iconDescentSpeed = 0.05f;
+
+    private Vector3 spawnPos;
+
+    public void OnEnable()
+    {
+        spawnPos = transform.position;
+        GameManager.instance.AddEffectToList(this);
+    }
 
     public void Update()
     {
@@ -32,11 +41,21 @@ public class EffectController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(0f, iconDecesentAmount, 0f), iconDescentSpeed) * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, spawnPos.y - iconDecesentAmount, transform.position.z), iconDescentSpeed * Time.deltaTime) ;
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(2, 2, 2), iconSetScaleSpeed * Time.deltaTime);
         }
       
+        
+    }
 
+    public void SelectedEffect()
+    {
+
+        iconSetPosition = SpawnManager.instance.SetIconSitPosition();
+
+        effectSelected = true;
+
+        GameManager.instance.EffectSelected();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -50,7 +69,11 @@ public class EffectController : MonoBehaviour
 
         iconSetPosition = SpawnManager.instance.SetIconSitPosition();
 
+
         effectSelected = true;
+
+
+        GameManager.instance.EffectSelected();
 
 
     }

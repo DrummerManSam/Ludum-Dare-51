@@ -6182,7 +6182,7 @@ MonoBehaviour:
   spawnCenterPosition: {x: 0, y: 0, z: 20}
   explosionPrefab: {fileID: 2597372390030616081, guid: 263695046e93f4d41ac7368fc280df7b, type: 3}
   iconSetPosition: {fileID: 4838566932171262627}
-  iconSetPositionAdjuster: 0.5
+  iconSetPositionAdjuster: 0.7
   effectList:
   - {fileID: 4838566931404803049, guid: f2f21b5d08b69974dad326e9572fc037, type: 3}
   - {fileID: 5738721686719573533, guid: 83124829474b8904990c3bb351d92429, type: 3}

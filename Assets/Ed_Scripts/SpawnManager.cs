@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private Transform effectSpawnPos2;
 
-    private int iconNumber = 1;
+    private int iconNumber = 0;
 
     public void Awake()
     {
@@ -95,7 +95,7 @@ public class SpawnManager : MonoBehaviour
     public void SpawnEffectChoice()
     {
         GameObject tempEffect1 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos1.position, effectSpawnPos1.rotation);
-        GameObject tempEffect2 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos2.position, effectSpawnPos2.rotation);
+        GameObject tempEffect2 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos2.position, effectSpawnPos2.rotation);    
     }
 
     public Vector3 SetIconSitPosition()
