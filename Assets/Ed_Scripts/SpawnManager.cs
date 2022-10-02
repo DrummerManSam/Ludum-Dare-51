@@ -17,6 +17,22 @@ public class SpawnManager : MonoBehaviour
 
     private List<GameObject> explosionList = new List<GameObject>();
 
+    [SerializeField]
+    private Transform iconSetPosition;
+
+    [SerializeField]
+    private float iconSetPositionAdjuster = 0.5f;
+
+    [SerializeField]
+    private GameObject[] effectList;
+
+    [SerializeField]
+    private Transform effectSpawnPos1;
+    [SerializeField]
+    private Transform effectSpawnPos2;
+
+    private int iconNumber = 1;
+
     public void Awake()
     {
         if(instance != null)
@@ -74,6 +90,19 @@ public class SpawnManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SpawnEffectChoice()
+    {
+        GameObject tempEffect1 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos1.position, effectSpawnPos1.rotation);
+        GameObject tempEffect2 = Instantiate(effectList[Random.Range(0, effectList.Length)], effectSpawnPos2.position, effectSpawnPos2.rotation);
+    }
+
+    public Vector3 SetIconSitPosition()
+    {
+        Vector3 newPos = iconSetPosition.position + new Vector3((iconSetPositionAdjuster * iconNumber), 0f, 0f);
+        iconNumber++;
+        return newPos;
     }
 
     public void ResetAllObstacles()

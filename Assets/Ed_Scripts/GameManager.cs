@@ -22,14 +22,6 @@ public class GameManager : MonoBehaviour
     private float m_countDownLag = 0.1f;
 
     [SerializeField]
-    private GameObject effectParents;
-
-    private List<Effect> m_potentialEffects = new List<Effect>();
-
-    [SerializeField]
-    private List<Effect> m_activeEffects = new List<Effect> ();
-
-    [SerializeField]
     private float m_totalScore = 0;
 
     [SerializeField]
@@ -68,12 +60,6 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
-
-        for(int i = 1; i < effectParents.transform.childCount; i++)
-        {
-            Effect tempEffect = effectParents.transform.GetChild(i).GetComponent<Effect>();
-            m_potentialEffects.Add(tempEffect);
-        }
 
         onCountDownReached += CountDownReached;
         
@@ -130,29 +116,7 @@ public class GameManager : MonoBehaviour
         m_countDownPause = true;
         m_signController.SwitchSprites(m_countDownPause);
 
-        //How to chose what effect raiting we can allow:
-        int chosenEffectRating = Random.Range(1, 10);
-
-        //Find the appropriate next effect:
-        Effect nextEffect = null;
-        for(int i = 0; i < m_potentialEffects.Count; i++)
-        {
-            if(m_potentialEffects[i].effectRating <= chosenEffectRating)
-            {
-                nextEffect = m_potentialEffects[i];
-                break; ;
-            }
-
-        }
-
-        //if (nextEffect == null)
-        //    return;
-
-        //Initiate the new Effect:
-       // nextEffect.InitEffect();
-
-        //Add it to the Effect list;
-      //  m_activeEffects.Add(nextEffect);
+        SpawnManager.instance.SpawnEffectChoice();
 
         Invoke("CountDownReset", m_countDownLag);
     }
@@ -171,7 +135,6 @@ public class GameManager : MonoBehaviour
         m_countDownTimer = 10;
         m_hasGameStarted = true;
         m_countDownPause = false;
-        m_activeEffects.Clear();
         m_scoreMultiplier = 1;
         m_totalScore = 0;
         m_signController.SwitchSprites(m_countDownPause);
@@ -188,10 +151,6 @@ public class GameManager : MonoBehaviour
         SpawnManager.instance.ResetAllObstacles();
         PlayerMovement.instance.ResetPlayer();
 
-        for (int i = 0; i < m_activeEffects.Count; i++)
-        {
-            m_activeEffects[i].StopEffect();
-        }
     }
 
 
