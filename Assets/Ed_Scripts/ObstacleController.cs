@@ -41,6 +41,9 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private PhysicMaterial bouncyMat;
 
+    [SerializeField]
+    private float carSteerTowardsPower = 5f;
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -77,7 +80,11 @@ public class ObstacleController : MonoBehaviour
         rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * (m_finalDirection) * Time.deltaTime, ForceMode.VelocityChange);
 
         if(GameManager.instance.isHomming &&  Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > 3f)
-               rb.MoveRotation(Quaternion.LookRotation(PlayerMovement.instance.transform.position - transform.position));
+        {
+            rb.MoveRotation(Quaternion.LookRotation(PlayerMovement.instance.transform.position - transform.position));
+            rb.AddForce( (m_finalDirection - transform.position) * Time.deltaTime * carSteerTowardsPower, ForceMode.VelocityChange);
+        }
+             
        
         rb.AddTorque(-rb.angularVelocity * factor);
     }
