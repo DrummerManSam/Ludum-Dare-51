@@ -51,6 +51,9 @@ public class SpawnManager : MonoBehaviour
 
     private int spawnLinearId = 0;
 
+    [SerializeField]
+    private Transform spawnCenter;
+
 
 
     public void Awake()
@@ -107,7 +110,7 @@ public class SpawnManager : MonoBehaviour
                 {
                     
                     obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[tempCounter], 0f, 0f);
-
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.rotation = spawnCenter.rotation;
                     obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster/2, 0f);
                     obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                     tempCounter++;
@@ -124,11 +127,16 @@ public class SpawnManager : MonoBehaviour
                 int SpawnRangeID = Random.Range(0, obstaclePrefabList[obstacleId].spawnRangeList.Length);
 
                 if(currentSpawnOrder == SpawnOrder.Random)
-                obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f) ;
+                {
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f);
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.rotation = spawnCenter.rotation;
+                }
+               
                 else if(currentSpawnOrder == SpawnOrder.Linear)
                 {
                       obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[spawnLinearId], 0f, 0f);
-                      spawnLinearId++;
+                    obstaclePrefabList[obstacleId].obstacleList[i].transform.rotation = spawnCenter.rotation;
+                    spawnLinearId++;
 
                     if (spawnLinearId >= obstaclePrefabList[obstacleId].spawnRangeList.Length)
                         spawnLinearId = 0;

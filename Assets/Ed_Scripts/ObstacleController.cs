@@ -57,38 +57,29 @@ public class ObstacleController : MonoBehaviour
         carSource.loop = true;
         carSource.Play();
 
-        m_finalDirection = -transform.forward;
+        m_finalDirection = transform.forward;
         m_torque = Vector3.zero;
 
         if (GameManager.instance.chaosFactor != 0)
         {
-          //  rb.useGravity = false;
             for(int i = 0; i < colliders.Count; i++)
             {
                 colliders[i].material = bouncyMat;
             }
-          //  rb.useGravity = false;
-           // m_finalDirection = -transform.forward + new Vector3(0f, Random.Range(0, 0.1f), 0f);
-            m_torque = new Vector3(0f, 0f, Random.Range(0, GameManager.instance.chaosFactor));
         }
 
         m_spawnTime = Time.time;
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-
-        if (GameManager.instance.chaosFactor == 0)
-            return;
-
-        rb.AddForce((new Vector3(Random.Range(0, 0.1f), Random.Range(0, 0.1f), -transform.forward.z)) * GameManager.instance.chaosFactor, ForceMode.Impulse);
-    }
-
     public void FixedUpdate()
     {
 
-        rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * m_finalDirection * Time.deltaTime, ForceMode.VelocityChange);
-        rb.AddTorque(-rb.angularVelocity * factor + m_torque);
+        rb.AddForce((m_obstacleSpeed * GameManager.instance.globalSpeed) * (m_finalDirection) * Time.deltaTime, ForceMode.VelocityChange);
+
+        if(GameManager.instance.isHomming &&  Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > 3f)
+               rb.MoveRotation(Quaternion.LookRotation(PlayerMovement.instance.transform.position - transform.position));
+       
+        rb.AddTorque(-rb.angularVelocity * factor);
     }
 
 
@@ -129,8 +120,8 @@ public class ObstacleController : MonoBehaviour
         nearMissPointGiven = false;
         GameManager.onCountDownReached -= OnCountDownReached;
         GameManager.onCountDownStarted -= OnCountDownRestarted;
-        rb.velocity = UnityEngine.Vector3.zero;
-        rb.angularVelocity = UnityEngine.Vector3.zero;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
 

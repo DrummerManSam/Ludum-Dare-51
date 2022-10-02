@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         aSource.PlayOneShot(deathClip[Random.Range(0, deathClip.Length)]);
         boxCollider.material = m_deathMaterial;
         rb.constraints = m_deathConstraints;
-        rb.AddForce(playerDamage * collision.impulse, ForceMode.Impulse);
+        rb.AddForce(collision.impulse, ForceMode.Impulse);
         m_animator.SetBool("Death", true);
     }
 
