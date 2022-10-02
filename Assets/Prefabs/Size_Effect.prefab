@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9041167863152241343}
   - component: {fileID: 9041167863152241342}
   - component: {fileID: 3292782000094067978}
-  - component: {fileID: 2207987286135003932}
+  - component: {fileID: 6149569040200081760}
   m_Layer: 0
   m_Name: Size_Effect
   m_TagString: Untagged
@@ -99,7 +99,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2207987286135003932
+--- !u!114 &6149569040200081760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,12 +108,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9041167863152241337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5dfb171d5bc644e9c4d805082d0cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 747052365ce594c42b868390e2de76d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iconSetPosition: {x: 0, y: 0, z: 0}
   effectSelected: 0
-  iconSetPositionSpeed: 2.5
-  iconSetScaleSpeed: 0.85
+  iconSetPositionSpeed: 3
+  iconSetScaleSpeed: 1
   iconDecesentAmount: 1.5
   iconDescentSpeed: 0.85
+  sizeValue: 0.25

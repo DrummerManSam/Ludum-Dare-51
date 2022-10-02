@@ -6151,17 +6151,17 @@ MonoBehaviour:
     obstaclePrefab: {fileID: 3986301889251558803, guid: 9b51a0e5954e63d43843a1f15a202806, type: 3}
     numberOfObjectToSpawn: 25
     objectDifficulty: 0
-    spawnOffset: {x: 0, y: 0.2, z: 0}
+    spawnOffset: {x: 0, y: 0.2, z: -1}
     spawnRangeList:
-    - 2
+    - -2
+    - -1.5
+    - -1
+    - -0.5
+    - 0
+    - 0.5
     - 1.5
     - 1
-    - 0.5
-    - 0
-    - -0.5
-    - -1
-    - -1.5
-    - -2
+    - 2
     obstacleList: []
   - obstacleName: Truck
     obstaclePrefab: {fileID: 6408562993749207580, guid: 9b05864ef82c6634ea96955100db4229, type: 3}
@@ -6192,6 +6192,8 @@ MonoBehaviour:
   effectSpawnPos2: {fileID: 1707552904}
   nearMissPointPreab: {fileID: 4688085786414672685, guid: 10d491e01571a1b439728ef5c8c92227, type: 3}
   nearMissPointSetPos: {fileID: 223393012}
+  m_obstacleSizeAdjuster: 0
+  currentSpawnOrder: 1
 --- !u!114 &767688763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,9 +6210,9 @@ MonoBehaviour:
   m_countDownLag: 10
   m_totalScore: 0
   m_scoreMultiplier: 1
-  m_globalSpeed: 8
-  m_spawnTimer: 0.8
-  spawnDensityAdj: 0
+  m_globalSpeed: 3
+  m_spawnTimer: 1
+  m_spawnDensityAdj: 0
   m_totalScoreText: {fileID: 39997570}
   m_hasGameStarted: 0
   m_countDownPause: 0
@@ -15980,6 +15982,7 @@ MonoBehaviour:
   jumpForce: 2
   isGrounded: 0
   isJumping: 0
+  canJump: 0
   jumpCutMultiplier: 0.5
   rayCastDownDepth: 0.55
 --- !u!95 &1939871280

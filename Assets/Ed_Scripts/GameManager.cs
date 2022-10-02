@@ -30,14 +30,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float m_globalSpeed = 1;
-    public float globalSpeed { get { return m_globalSpeed; } }
+    public float globalSpeed { get { return m_globalSpeed; } set { m_globalSpeed = value; } }
 
     [SerializeField]
     private float m_spawnTimer = 1f;
-    public float spawnTimer { get { return m_spawnTimer; } }
+    public float spawnTimer { get { return m_spawnTimer; } set { m_spawnTimer = value; } }
 
     [SerializeField]
-    private float spawnDensityAdj = 0.25f;
+    private float m_spawnDensityAdj = 0.25f;
+    public float spawnDensityAdj { get { return m_spawnDensityAdj; } set { m_spawnDensityAdj = value; } }
 
     private float timer = 100f;
 
@@ -83,10 +84,10 @@ public class GameManager : MonoBehaviour
             if(timer > spawnTimer)
             {
                 timer = 0;
-                m_spawnTimer -= spawnDensityAdj;
-                float newSpawnTimer = m_spawnTimer - spawnDensityAdj;
+                m_spawnTimer -= m_spawnDensityAdj;
+                float newSpawnTimer = m_spawnTimer - m_spawnDensityAdj;
 
-                newSpawnTimer = Mathf.Clamp(newSpawnTimer, 0.15f, 100);
+                newSpawnTimer = Mathf.Clamp(newSpawnTimer, 0f, 100);
 
                 m_spawnTimer = newSpawnTimer;
 
@@ -122,7 +123,10 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < tempEffectList.Count; i++)
         {
-            if (!tempEffectList[i].EffectSelected)
+            if (tempEffectList[i].EffectSelected)
+                tempEffectList[i].IntEffect();
+
+                if (!tempEffectList[i].EffectSelected)
                 Destroy(tempEffectList[i].gameObject);
         }
 

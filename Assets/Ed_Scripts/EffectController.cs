@@ -12,16 +12,16 @@ public class EffectController : MonoBehaviour
     public bool EffectSelected { get { return effectSelected; } }
 
     [SerializeField]
-    private float iconSetPositionSpeed = 0.05f;
+    private float iconSetPositionSpeed = 3f;
 
     [SerializeField]
-    private float iconSetScaleSpeed = 0.05f;
+    private float iconSetScaleSpeed = 1f;
 
     [SerializeField]
     private float iconDecesentAmount = 1.5f;
 
     [SerializeField]
-    private float iconDescentSpeed = 0.05f;
+    private float iconDescentSpeed = 0.85f;
 
     private Vector3 spawnPos;
 
@@ -29,6 +29,11 @@ public class EffectController : MonoBehaviour
     {
         spawnPos = transform.position;
         GameManager.instance.AddEffectToList(this);
+    }
+
+    public virtual void IntEffect()
+    {
+        
     }
 
     public void Update()

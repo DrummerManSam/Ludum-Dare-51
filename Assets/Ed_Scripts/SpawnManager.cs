@@ -41,6 +41,16 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private Transform nearMissPointSetPos;
 
+    [SerializeField]
+    private float m_obstacleSizeAdjuster = 0f;
+    public float obstacleSizeAdjuster { get { return m_obstacleSizeAdjuster; } set { m_obstacleSizeAdjuster = value; } }
+
+    public enum SpawnOrder { random, linear};
+
+    public SpawnOrder currentSpawnOrder = SpawnOrder.random;
+
+    private int spawnLinearId = 0;
+
     public void Awake()
     {
         if (instance != null)
@@ -87,7 +97,18 @@ public class SpawnManager : MonoBehaviour
             {
                 int SpawnRangeID = Random.Range(0, obstaclePrefabList[obstacleId].spawnRangeList.Length);
 
+                if(currentSpawnOrder == SpawnOrder.random)
                 obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[SpawnRangeID], 0f, 0f) ;
+                else if(currentSpawnOrder == SpawnOrder.linear)
+                {
+                      obstaclePrefabList[obstacleId].obstacleList[i].transform.position = obstaclePrefabList[obstacleId].spawnOffset + spawnCenterPosition + new Vector3(obstaclePrefabList[obstacleId].spawnRangeList[spawnLinearId], 0f, 0f);
+                      spawnLinearId++;
+
+                    if (spawnLinearId >= obstaclePrefabList[obstacleId].spawnRangeList.Length)
+                        spawnLinearId = 0;
+                }
+
+                obstaclePrefabList[obstacleId].obstacleList[i].transform.localScale += new Vector3(m_obstacleSizeAdjuster, m_obstacleSizeAdjuster, m_obstacleSizeAdjuster);
                 obstaclePrefabList[obstacleId].obstacleList[i].SetActive(true);
                 return;
             }
